@@ -1,0 +1,61 @@
+{
+    "GameA":{
+        "text":[{
+                "name":"UserName",
+                "props":{
+                },
+                "component":"InputComponent",
+                "extra":[
+                    {
+                        "name":"nameValidate",
+                        "source":"这里写额外操作的js文件"
+                    }
+                ],
+
+            },{
+                "name":"PassWord",
+                "props":{},
+                "component":"InputComponent",
+                "extra":[{
+                        "name":"passwordValidate",
+                        "source":"这里写额外操作的js文件"
+                    },{
+                        "source":"这里写额外操作的js文件"
+                    }
+                ],
+            },{
+                "name":"CoverList",
+                "props":{
+                    "cover_src":[{
+                        "name":"picOne",
+                        "src":"xxxx"
+                    },{
+                        "name":"picTwo",
+                        "src":"xxxx"
+                    },{
+                        "name":"picThree",
+                        "src":"xxxx"
+                    }]
+                },
+                "component":"",
+                "extra":[
+                    {
+                        "js_source":"因为图片上传需要多个PicUpload组件，所以在extraOption中配置若干个PicUpload合成一个块状元素组件；若该组件有2个或2个以上业务使用，则单独设计新组件。"
+                    },{
+
+                    }
+                ],
+                "class":{
+                }
+            }],
+        "images":[],
+        "videos":[]
+    },
+
+    "GameB":{
+    },
+
+    "GameC":{
+
+    }
+}

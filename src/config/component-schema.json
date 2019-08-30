@@ -1,0 +1,25 @@
+{
+    "Selector":{
+        "template":"",
+        "props":{
+        },
+        "data":{
+        },
+        "methods":{
+        },
+        "extra":{
+        }
+    },
+
+    "PicUpload":{
+        "template":"",
+        "props":{
+        },
+        "data":{
+        },
+        "methods":{
+        },
+        "extra":{
+        }
+    }
+}
