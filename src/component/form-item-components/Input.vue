@@ -1,34 +1,28 @@
 <template>
     <div id="inputComponent">
-        <el-input v-model="value" v-bind:style="classObject"></el-input>
+        <el-input v-model="inputData" :style="propList.class" @change="sendDataBack"></el-input>
     </div>
 </template>
 <script>
 export default {
     props:{
-        propList:Object
+        propList: Object
     },
     watch: {
-        propList:{
-            handler(val){
-                this.value = val.data
-                if(val.class!=''){
-                    Object.assign(this.classObject,val.class);
-                }
-            },
-            deep:true
-        }
     },  
     mounted:function(){
     },
     data(){
         return{
-            value:'',
-            classObject:{},
+            inputData:this.propList.data
         }
     },
     methods:{
-        
+        sendDataBack(){
+            let tmp = {}
+            tmp[this.propList.itemName] = this.inputData;
+            this.$emit("getDataBack",tmp);
+        }
     }
 }
 </script>

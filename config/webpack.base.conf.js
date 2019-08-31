@@ -18,6 +18,7 @@ module.exports = {
       vue: 'vue/dist/vue.esm.js',
       'componentDir': path.join(root, 'src/component/form-item-components'),
       'lib': path.join(root, 'src/lib'),
+      'config':path.join(root,'src/config'),
     }
   },
   module: {
