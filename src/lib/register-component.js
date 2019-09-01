@@ -1,5 +1,5 @@
-import Input from '../component/form-item-components/Input'
-import PicUpload from '../component/form-item-components/PicUpload'
+import Input from 'componentDir/Input'
+import PicUpload from 'componentDir/PicUpload'
 import Vue from 'vue'
 const Register = {};
 Register.install = function(){

@@ -24,22 +24,17 @@ export default {
             wrongMsg:'',
             Functions:{
                 beforeUpload:'',
-                uploadAction:''
             }
         }
     },
     watch:{
         extraOperation: function (val){
             if(val){
-                console.log(val)
                 Object.assign(this.Functions,val);
             }
         }
     },
     methods:{
-        uploadAction(param){
-            console.log(param);
-        },
         handleAvatarSuccess(res, file) {
             let self = this;
             this.src = URL.createObjectURL(file.raw);
@@ -48,13 +43,14 @@ export default {
             this.$emit("getDataBack",tmp);
         },
         beforeUpload(file){
-            console.log(file);
+            // console.log(file);
             let wrongMsg = this.extraOperation.beforeUpload(file);
-            console.log(wrongMsg);
+            // console.log(wrongMsg);
             if(wrongMsg==''){
                 return true;
             }else{
                 this.wrongMsg = wrongMsg;
+                this.src = '';
                 return false;
             }
         }

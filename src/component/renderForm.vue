@@ -20,35 +20,36 @@ export default {
     },
     data(){
         return{
-            formInfo:{
-
-            }
+            formInfo:{},
         }
     },
     computed:{
-        transForm:function(){
-            let self  = this;
-            console.log(this.currentForm);
-            this.currentForm.forEach(element => {
-                let tmp = {};
-                tmp[element.props.itemName] = element.props.data;
-                Object.assign(self.formInfo,tmp); 
-            });
-            return this.currentForm;
-        }
+
     },
     watch:{
+        currentForm:{
+            handler:function(val){
+                let self  = this;
+                // console.log(val);
+                val.forEach(element => {
+                    let tmp = {};
+                    tmp[element.props.itemName] = element.props.data;
+                    Object.assign(self.formInfo,tmp); 
+                });
+                this.$emit("getForm",this.formInfo);
+            }
+        }
     },
     mounted(){
-        console.log(this.currentForm);
+        // console.log(this.currentForm);
     },
     methods:{
         getData(val){
             //收取子组件中的数据的最新状态
             Object.assign(this.formInfo, val);
-            console.log(this.formInfo);
+            // console.log(this.formInfo);
             this.$emit("getForm",this.formInfo);
-        }
+        },
     }
 }
 </script>

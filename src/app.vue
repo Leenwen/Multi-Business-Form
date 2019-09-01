@@ -6,9 +6,9 @@
             <el-button type="info" @click="allData = source[2]">游戏三</el-button>
         </div>
         <formComponent :currentForm="allData" @getForm="getFormFunc"></formComponent>
-        <div>
+        <div style="margin:10px">
             <el-button type="prmary" @click="printFormData">打印数据</el-button>
-            <el-input type="textarea" :value="dataPrint"></el-input>
+            <el-input type="textarea" :value="dataPrint" style="width:50%"></el-input>
         </div>
     </div>
 </template>
@@ -20,41 +20,48 @@ export default {
     },
     mounted(){
         this.allData = this.source[0];
-        this.fetchData();
+        let self = this;
+        this.fetchData().then(()=>{
+            self.mapToSchema();
+        });
     },
     data() {
         return {
             dataPrint:"",
             formInfo:"",
+            //source为测试用的表单数据对象数组源
             source:[
                 [{
-                name:"游戏一测试输入框",
+                name:"游戏一的用户名",
                 props:{
                     itemName:"userName",
-                    data: "测试啊测试",
+                    data: "甲的游戏A账户名",
                     class:{
                        display:"inline-block",
-                       width:"120px",
+                       width:"160px",
                        "background-color":"#E7E7E7"
                     }
                 },
                 component:"InputItem",
             },{
-                name:"游戏一第二个测试输入框",
+                name:"游戏一的密码",
                 props:{
                     itemName:"passWord",
-                    data: "测试啊测试",
+                    data: "123456",
                     class:{
                        display:"inline-block",
-                       width:"120px",
+                       width:"160px",
                        "background-color":"#E7E7E7"
                     }
                 },
                 component:"InputItem",
+                extra:{
+                    showPassword:true,
+                }
             },{
-                name:"png图片上传",
+                name:"游戏一的头像（仅支持png上传）",
                 props:{
-                    itemName:"picUpload",
+                    itemName:"avatar",
                     data:"",
                     class:{
                     }
@@ -63,9 +70,7 @@ export default {
                 extra:{
                     beforeUpload:function(file){
                         let type = file.type.split('/');
-                        console.log(type);
                         let reg = /(png)/i;
-                        console.log(reg);
                         if(type[type.length-1].match(reg)==null){
                             return "png is the only type allowed";
                         }else{
@@ -75,22 +80,22 @@ export default {
                 }
             }],
             [{
-                name:"游戏二测试输入框",
+                name:"游戏二的用户名",
                 props:{
                     itemName:"userName",
-                    data: "测试啊测试",
+                    data: "乙的游戏B账户名",
                     class:{
                        display:"inline-block",
-                       width:"120px",
+                       width:"240px",
                        "background-color":"#E7E7E7"
                     }
                 },
                 component:"InputItem",
             },{
-                name:"游戏二第二个测试输入框",
+                name:"游戏二的密码",
                 props:{
                     itemName:"passWord",
-                    data: "测试啊测试",
+                    data: "234567",
                     class:{
                        display:"inline-block",
                        width:"120px",
@@ -98,10 +103,13 @@ export default {
                     }
                 },
                 component:"InputItem",
+                extra:{
+                    showPassword:true,
+                }
             },{
-                name:"jpg图片上传",
+                name:"游戏二的头像（仅支持JPG）",
                 props:{
-                    itemName:"picUpload",
+                    itemName:"avatar",
                     data:"",
                     class:{
                     }
@@ -111,7 +119,6 @@ export default {
                     beforeUpload:function(file){
                         let type = file.type.split('/');
                         let reg = /(jpg|jpeg)/i;
-                        console.log(reg);
                         if(type[type.length-1].match(reg)==null){
                             return "jpg is the only type allowed";
                         }else{
@@ -120,10 +127,10 @@ export default {
                     }
                 }
             }],[{
-                name:"测试输入框",
+                name:"游戏三的用户名",
                 props:{
                     itemName:"userName",
-                    data: "测试啊测试",
+                    data: "丙的游戏C账户名",
                     class:{
                        display:"inline-block",
                        width:"120px",
@@ -132,10 +139,10 @@ export default {
                 },
                 component:"InputItem",
             },{
-                name:"第二个测试输入框",
+                name:"游戏三的密码",
                 props:{
                     itemName:"passWord",
-                    data: "测试啊测试",
+                    data: "345678",
                     class:{
                        display:"inline-block",
                        width:"120px",
@@ -143,10 +150,13 @@ export default {
                     }
                 },
                 component:"InputItem",
+                extra:{
+                    showPassword:true,
+                }
             },{
-                name:"jpg图片上传",
+                name:"游戏三的头像（仅支持jpg）",
                 props:{
-                    itemName:"picUpload",
+                    itemName:"avatar",
                     data:"",
                     class:{
                     }
@@ -155,7 +165,6 @@ export default {
                 extra:{
                     beforeUpload:function(file){
                         let type = file.type.split('/');
-                        console.log(type);
                         let reg = /(jpg|jpeg)/i;
                         if(type[type.length-1].match(reg)==null){
                             return "jpg is the only type allowed";
@@ -165,23 +174,44 @@ export default {
                     }
                 }
             }]],
-            allData:[]
+            allData:[],
+
+            //demoData尚未使用
+            demoData:[{
+                biz:"GameA",
+                type:"Text",
+                Name:"甲的游戏A账户名",
+                PassWord:"123456",
+                Avatar:""
+            },{
+                biz:"GameB",
+                type:"Text",
+                Name:"乙的游戏B账户名",
+                PassWord:"234567",
+                Avatar:""
+            }]
         }
     },
     methods:{
         fetchData(){
-            // let self = this;
-            // request.post().then(res=>{
-            //     self.allData = self.mapToSchema()
-            // }).catch(()=>{});
+            //获取源数据,未完成
+            return new Promise((resolve,reject)=>{
+                resolve();
+            })
         },
         mapToSchema(){
-            //business-schema映射文件，有余时间就补上
+            //处理源数据根据business-schema文件映射到表单数据,未完成。
+            this.$http.get("src/config/business-schema.json").then((res) => {
+                //这里处理源数据，未完成
+            }, (response) => {
+                //处理错误
+            });
         },
         printFormData(){
             this.dataPrint = JSON.stringify(this.formInfo);
         },
         getFormFunc(val){
+            //接受表单变化后传来的源数据
             this.formInfo = val;
         }
     }
